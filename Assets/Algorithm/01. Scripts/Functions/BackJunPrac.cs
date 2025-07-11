@@ -8,9 +8,8 @@ public class BackJunPrac : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void Test(string[] args)
     {
-        
+
     }
 }
