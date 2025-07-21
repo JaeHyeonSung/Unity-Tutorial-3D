@@ -19,7 +19,10 @@ public class FPSPlayerFire : MonoBehaviour
     public float throwPower =15f;
     private void Update()
     {
-
+        if (FPSGameManager.gm.gState != FPSGameManager.GameState.Run)
+        {
+            return;
+        }
         if (Input.GetMouseButtonDown(1))
         {
             GameObject bomb = Instantiate(bombFactory);
