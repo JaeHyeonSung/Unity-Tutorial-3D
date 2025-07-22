@@ -39,6 +39,7 @@ public class FPSGameManager : MonoBehaviour
     {
         if (fpsPlayer.hp <= 0)
         {
+            fpsPlayer.GetComponentInChildren<Animator>().SetFloat("MoveMotion", 0f);
             gameLabel.SetActive(true);
             gameText.text = "Game Over";
             gameText.color = Color.red;

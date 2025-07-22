@@ -8,11 +8,12 @@ public class FPSPlayerFire : MonoBehaviour
     public GameObject bulletEffect;
 
     ParticleSystem ps;
-
+    private Animator anim;
     public int weaponPower = 5;
     private void Start()
     {
         ps = bulletEffect.GetComponent<ParticleSystem>();
+        anim = GetComponentInChildren<Animator>();
     }
 
 
@@ -34,6 +35,10 @@ public class FPSPlayerFire : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            if (anim.GetFloat("MoveMotion") == 0)
+            {
+                anim.SetTrigger("Attack");
+            }
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 
             RaycastHit hitInfo = new RaycastHit();
