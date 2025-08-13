@@ -8,8 +8,14 @@ public enum CameraState
 
 public class GameManager : Singleton<GameManager>
 {
+    public UIManager uiManager;
+    public FarmManager farmManager;
+    public ItemManager itemManager;
     public CameraState cameraState = CameraState.OutSide;
     [SerializeField] private CinemachineClearShot clearShot;
+
+
+
     public void SetCameraState(CameraState newState)
     {
         if (cameraState != newState)
@@ -24,6 +30,9 @@ public class GameManager : Singleton<GameManager>
             clearShot.ChildCameras[(int)cameraState].Priority = 10;
         }
     }
+
+
+
 
 }
 

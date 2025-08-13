@@ -14,8 +14,12 @@ namespace Farm
         private float turnSpeed = 10f;
         private float runSpeed = 4f;
         private bool isRun;
+
+        private Vector3 velocity;
+        private const float GRAVITY = -9.81f;
         private void Start()
         {
+
             cc = GetComponent<CharacterController>();
             anim = GetComponent<Animator>();
 
@@ -23,8 +27,10 @@ namespace Farm
 
         private void Update()
         {
-            
-            cc.Move(moveInput * currentSpeed * Time.deltaTime);
+            velocity.y += GRAVITY;
+
+            var dir = moveInput * currentSpeed + Vector3.up * velocity.y;
+            cc.Move(dir * Time.deltaTime);
             Turn();
             SetAnimation();
 
@@ -33,7 +39,7 @@ namespace Farm
         void OnMove(InputValue value)
         {
             var move = value.Get<Vector2>();
-            moveInput = new Vector3(move.x,0 ,move.y);
+            moveInput = new Vector3(move.x, 0, move.y);
         }
         private void OnSprint(InputValue value)
         {
@@ -41,18 +47,18 @@ namespace Farm
         }
         private void Turn()
         {
-            if(moveInput != Vector3.zero)
+            if (moveInput != Vector3.zero)
             {
                 Quaternion targetRot = Quaternion.LookRotation(moveInput);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, turnSpeed*Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, turnSpeed * Time.deltaTime);
             }
         }
-        
+
         private void SetAnimation()
         {
-            
+
             float targetValue = 0f;
-            if(moveInput != Vector3.zero)
+            if (moveInput != Vector3.zero)
             {
                 targetValue = isRun ? 1f : 0.5f;
                 currentSpeed = isRun ? runSpeed : walkSpeed;

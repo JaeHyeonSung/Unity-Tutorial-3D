@@ -1,10 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class FarmManager : MonoBehaviour
 {
     public enum FarmState
     {
-        Seed, Harvest
+        None, Seed, Harvest
     }
     FarmState farmState;
     [SerializeField] private GameObject tilePrefab;
@@ -15,8 +16,12 @@ public class FarmManager : MonoBehaviour
 
     [SerializeField] private LayerMask farmLayerMask;
 
+    [SerializeField] private GameObject[] crops; // 0: Wheat, 1: Potato, 2: Carrot, etc.
 
-    public GameObject plantPrefab;
+    public GameObject currentPlant;
+    [SerializeField] private int currentPlantIndex;
+    [SerializeField] private GameObject[] plants;
+
     private GameObject[,] tileArray;
     private Camera mainCamera;
 
@@ -30,7 +35,7 @@ public class FarmManager : MonoBehaviour
     }
     private void Update()
     {
-        if (GameManager.Instance.cameraState == CameraState.Farm)
+        if (farmState != FarmState.None)
         {
             switch (farmState)
             {
@@ -38,7 +43,7 @@ public class FarmManager : MonoBehaviour
                     OnSeed();
                     break;
                 case FarmState.Harvest:
-                    Harvest();
+                    OnHarvest();
                     break;
                 default:
                     break;
@@ -82,8 +87,9 @@ public class FarmManager : MonoBehaviour
                 if (tileArray[tileX, tileY] == null)
                 {
                     //GameObject tile = hit.collider.gameObject;
-                    GameObject plant = Instantiate(plantPrefab, transform.GetChild(1));
+                    GameObject plant = Instantiate(plants[currentPlantIndex], transform.GetChild(1));
                     plant.transform.position = hit.transform.position;
+                    plant.GetComponent<Plant>().plantIndex = currentPlantIndex;
                     //GameObject plant = Instantiate(plantPrefab, tile.transform.position + Vector3.up * 0.1f, Quaternion.identity);
                     tileArray[tileX, tileY] = plant;
                 }
@@ -91,13 +97,65 @@ public class FarmManager : MonoBehaviour
                 {
                     Debug.Log("이 공간에는 이미 작물이 심어져 있습니다.");
                 }
-
+                
             }
         }
     }
 
-    void Harvest()
+    void OnHarvest()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
+            if (Physics.Raycast(ray, out hit, 100f, farmLayerMask))
+            {
+                Tile tile = hit.collider.GetComponent<Tile>();
+                int tileX = tile.arrayPos.x;
+                int tileY = tile.arrayPos.y;
+                if (tileArray[tileX, tileY] != null)
+                {
+                    Plant plant = tileArray[tileX, tileY].GetComponent<Plant>();
+
+                    if (plant.isHarvestable)
+                    {
+                        plant.gameObject.SetActive(false);
+                        tileArray[tileX, tileY] = null;
+
+                        StartCoroutine(HarvestRoutine(plant.plantIndex, hit.transform.position));
+                    }
+                    
+                }
+                
+            }
+        }
+    }
+
+    IEnumerator HarvestRoutine(int index, Vector3 pos)
+    {
+        int ranAmount = Random.Range(1, 4);
+
+        for (int i=0; i < ranAmount; i++)
+        {
+            GameObject crop = Instantiate(crops[index]);
+            crop.transform.position = pos + Vector3.up * 0.5f;
+            
+            yield return new WaitForSeconds(0.15f);
+        }
+       
+    }
+
+    public void SetState(FarmState newState)
+    {
+        if (farmState != newState)
+        {
+            farmState = newState;
+        }
+    }
+
+    public void SetPlant(int index)
+    {
+        currentPlantIndex = index;
     }
 }

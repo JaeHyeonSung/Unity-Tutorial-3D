@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4000010095355520}
   - component: {fileID: 33000012079986258}
   - component: {fileID: 23000013933252682}
+  - component: {fileID: 1518826657793274768}
   m_Layer: 0
   m_Name: Pumpkin_Plant
   m_TagString: Untagged
@@ -90,6 +91,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1518826657793274768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013410243764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71a2a6cf09e238a4bb8323ca64c01f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3995051348148978953
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,6 +222,7 @@ Transform:
   m_Children:
   - {fileID: 4507257189913716986}
   - {fileID: 555341015773660585}
+  - {fileID: 7561365361956617158}
   m_Father: {fileID: 4000010095355520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3502409136065914512
@@ -424,6 +438,68 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011660475378, guid: 0adfa404918648e42a1fb073ef9010d3, type: 3}
   m_PrefabInstance: {fileID: 556971133131980379}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3326789389441662696
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3380618430601248431}
+    m_Modifications:
+    - target: {fileID: 4406498941499896956, guid: 9234d99c6a5689a46ab357f7efed181a, type: 3}
+      propertyPath: m_Name
+      value: Alarm
+      objectReference: {fileID: 0}
+    - target: {fileID: 5099338043901904174, guid: 9234d99c6a5689a46ab357f7efed181a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5099338043901904174, guid: 9234d99c6a5689a46ab357f7efed181a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.821
+      objectReference: {fileID: 0}
+    - target: {fileID: 5099338043901904174, guid: 9234d99c6a5689a46ab357f7efed181a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5099338043901904174, guid: 9234d99c6a5689a46ab357f7efed181a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5099338043901904174, guid: 9234d99c6a5689a46ab357f7efed181a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5099338043901904174, guid: 9234d99c6a5689a46ab357f7efed181a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5099338043901904174, guid: 9234d99c6a5689a46ab357f7efed181a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5099338043901904174, guid: 9234d99c6a5689a46ab357f7efed181a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5099338043901904174, guid: 9234d99c6a5689a46ab357f7efed181a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5099338043901904174, guid: 9234d99c6a5689a46ab357f7efed181a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9234d99c6a5689a46ab357f7efed181a, type: 3}
+--- !u!4 &7561365361956617158 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5099338043901904174, guid: 9234d99c6a5689a46ab357f7efed181a, type: 3}
+  m_PrefabInstance: {fileID: 3326789389441662696}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3806924838259427168
 PrefabInstance:
