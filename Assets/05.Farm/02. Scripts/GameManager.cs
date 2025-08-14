@@ -3,7 +3,7 @@ using UnityEngine;
 
 public enum CameraState
 {
-    OutSide, Farm, House, Animal
+    OutSide, Farm, House, Animal, Board
 }
 
 public class GameManager : Singleton<GameManager>
